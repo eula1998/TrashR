@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+          color: ForestGreen;
+          text-align: center;
+          font-family: calibri;
+          font-size: 50px;
+        }
+
+        #failure {
+          color:ForestGreen;
+          text-align: center;
+          font-size: 25px;
+          font-weight: 20px;
+          font-family: calibri;
+        }
+
+        #click {
+          color: ForestGreen;
+          text-align: center;
+          font-size: 25px;
+          font-family: calibri;
+        }
+
+        #button {
+          text-align: center;
+          font-family: calibri;
+
+        }
+    </style>
+</head>
+<body style="background-color:LightGreen">
+
+<h1>Trashr</h1>
+
+<p id = "failure">Failure to recycle properly is a big problem today!</p>
+
+<p id = "click">Click the button to determine what is recyclable!</p>
+
+
+<button onclick="myFunction()">Click Me!</button>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+
+<script type="text/javascript">
+function typing(trash, matchList){ 
+ if (prompt("Is it made out of or has it contained toxic material? (y/n)") == "y"){
+  return 0;
+ }
+ else if (trash.indexOf("container") >=0){
+  trash = prompt("What is the container made of?");
+ }
+
+ for (var i = 0; i < matchList.length; i++){
+  if (trash.indexOf(matchList[i][0]) >= 0)
+  {
+   switch(matchList[i][0])
+   {
+    case "paper": 
+     if (trash.indexOf("wax") >= 0|| trash.indexOf("wrapping")>= 0 ||trash.indexOf("towel") >= 0||trash.indexOf("tissue")>= 0){
+      return 0;
+     }
+     else if (prompt("Is the paper covered in food and/or oil? (y/n") == "y"){
+      return 0;
+     }
+     else {return 1;}
+    break;
+
+    case "box": 
+     if (trash.indexOf("pizza") >= 0 || prompt("Is it covered in food and/or oil? (y/n") == "y"|| prompt("Is it covered in plastic? (y/n)") == "y"){
+      document.getElementById("demo2").innerHTML = "Recycling a single run of the Sunday New York Times would save 75,000 trees.";
+      return 0;
+     }
+     else {
+      document.getElementById("demo2").innerHTML = "Recycling a single run of the Sunday New York Times would save 75,000 trees.";
+      return 1;
+    }
+    break;
+
+    case "cardboard": 
+     if (prompt("Is it covered in food and/or oil? (y/n)") == "y"|| prompt("Is it covered in plastic? (y/n)") == "y"){
+      document.getElementById("demo2").innerHTML = "When you smell a dump, what you actually smell is the paper in the dump!";
+      return 0;
+     }
+     else {
+      document.getElementById("demo2").innerHTML = "Recycling a single run of the Sunday New York Times would save 75,000 trees.";
+      return 1;
+    }
+    break;
+
+    case "can": 
+     if (trash.indexOf("paint") >= 0 || trash.indexOf("motor") >= 0){
+      document.getElementById("demo2").innerHTML = "The United States is the #1 trash-producing country in the world at 1,609 pounds per person per year. This means that 5% of the world's people generate 40% of the world's waste.";
+      return 0;
+     }
+     else {
+      document.getElementById("demo2").innerHTML = "The United States is the #1 trash-producing country in the world at 1,609 pounds per person per year. This means that 5% of the world's people generate 40% of the world's waste.";
+      return 1;
+    }
+    break;
+
+    case "glass": 
+     if (trash.indexOf("window") >=0){
+      document.getElementById("demo2").innerHTML = "The energy saved from recycling one glass bottle can run a 100-watt light bulb for four hours."
+      return 0;
+     }
+     else {
+       document.getElementById("demo2").innerHTML = "The energy saved from recycling one glass bottle can run a 100-watt light bulb for four hours."
+      return 1;
+    }
+    break;
+
+    case "plastic": 
+     if (trash.indexOf("fork") >= 0 || trash.indexOf("knife") >= 0 || trash.indexOf("spoon") >= 0 || trash.indexOf("plate") >= 0){
+      document.getElementById("demo2").innerHTML = "Americans use 2,500,000 plastic bottles every hour! Most of them are thrown away!";
+      return 0;
+     }
+     else {
+      document.getElementById("demo2").innerHTML = "Americans use 2,500,000 plastic bottles every hour! Most of them are thrown away!";
+      return 1;
+    }
+    break;
+
+    case "cd": 
+     document.getElementById("demo2").innerHTML = "Cannot be recycled through home recycling box. Please refer to local regulation for CD recycling. ";
+     return 1; 
+    break;
+
+    case "fork":
+    case "spoon":
+    case "knife:":
+    case "plate": 
+     if (prompt("Is it made of metal? (y/n)") == "y"){
+      document.getElementById("demo2").innerHTML = "The United States is the #1 trash-producing country in the world at 1,609 pounds per person per year. This means that 5% of the world's people generate 40% of the world's waste.";
+      return 1; 
+     }
+     else {
+       document.getElementById("demo2").innerHTML = "The United States is the #1 trash-producing country in the world at 1,609 pounds per person per year. This means that 5% of the world's people generate 40% of the world's waste.";
+      return 0;
+    }
+    break;
+
+    case "electronics": 
+     document.getElementById("demo2").innerHTML = "Cannot be recycled through home recycling box. Please refer to local regulation for each type of electronic recycling. ";
+     return 1; 
+    break;
+    default:  return matchList[i][1];
+    break;
+   };
+  };
+ };
+ return -1; 
+};
+//===================================================================================================
+function myFunction() {
+ var trash = prompt("What trash are you disposing right now?");
+ trash = trash.toLowerCase();
+ matchList = [["napkin", 0],
+    ["tissue", 0],
+    ["porcelain", 0], 
+    ["ceramic", 0],
+    ["oil", 0],
+    ["mirror", 1],
+    ["bulb", 0],
+    ["crystal", 0],
+    ["foam", 0],
+    ["paper", 1],
+    ["magazine", 1],
+    ["book", 1],
+    ["mail", 1],
+    ["box", 1],
+    ["folder", 1],
+    ["carton", 1],
+    ["cardboard", 1],
+    ["can", 1],
+    ["tin", 1],
+    ["aluminum", 1],
+    ["foil", 1],
+    ["pot", 1],
+    ["steel", 1]
+    ["pan", 1],
+    ["fork", 1],
+    ["knife", 1],
+    ["spoon", 1],
+    ["glass", 1],
+    ["bottle", 1],
+    ["jar", 1],
+    ["plastic", 1],
+    ["rubber", 1],
+    ["cd", 1],
+    ["electronics", 1]
+    ["plate", 1]];
+ switch(typing(trash, matchList))
+ {
+  case 1:     document.getElementById("demo").innerHTML = "Recyclable!";
+  break;
+  case 0:     document.getElementById("demo").innerHTML = "Not Recyclable!";
+  break;
+  case -1:  document.getElementById("demo").innerHTML = "No record. \nMight want to consider changing or adding description of its material? ";
+  break;
+ }
+} 
+</script> 
+
+<div id="footer">
+Facts from: timetorecycle.org
+Web Designed by Elan B., Irene S., Kalee Y., and Eula Z. at PennApps 2015. 
+</body>
+</html>
